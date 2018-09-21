@@ -29,22 +29,17 @@ passport.use(
             callbackURL: "/auth/google/callback",
             proxy: true
         }, //callback
-        (accessToken, refreshToken, profile, done) => {
-            //            console.log("profile", profile);
+        async (accessToken, refreshToken, profile, done) => {
+            const existingUser = await User.findOne({ googleId: profile.id });
 
-            //find 1 returns a promise so .then
-            User.findOne({ googleId: profile.id }).then(existingUser => {
-                if (existingUser) {
-                    // user exists
-                    done(null, existingUser);
-                } else {
-                    //dont have a user
-                    new User({ googleId: profile.id })
-                        .save()
-                        .then(user => done(null, user));
-                    //when you call save it takes the new user instance and saves it to the db (ASYNC)
-                }
-            });
+            if (existingUser) {
+                // user exists
+                return done(null, existingUser);
+            }
+            //dont have a user
+            const user = await new User({ googleId: profile.id }).save();
+            done(null, user);
+            //when you call save it takes the new user instance and saves it to the db (ASYNC)
         }
     )
 );
