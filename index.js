@@ -14,11 +14,7 @@ require("./services/passport");
 const keys = require("./config/keys");
 
 mongoose.connect(keys.mongoURI);
-//we dont want to commit this uri to github, because
 
-//single app, most majority of projects use single app
-//client ID 500242202169-vlamg6klrpegk1pn01talirfdohnavj7.apps.googleusercontent.com
-//client secret 6AqXLyQfSTG35sjJr3Xb0OdH
 const app = express();
 
 //takes the cookie and assigns it to req.session

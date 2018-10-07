@@ -4,13 +4,13 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 
 import App from "./components/App";
-import reducers from './reducers'
+import reducers from "./reducers";
 
 const store = createStore(reducers, {}, applyMiddleware());
-
+// createStore(reducers,initial state, middlewarestack)
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.querySelector("#root")
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
 );
