@@ -20,6 +20,7 @@
         "cookie-session": "^2.0.0-beta.3",
         "eslint": "^5.6.1",
         "express": "^4.16.3",
+        "materialize-css": "^1.0.0-rc.2",
         "mongoose": "^5.2.15",
         "nodemon": "^1.18.4",
         "passport": "^0.4.0",
